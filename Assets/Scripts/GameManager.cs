@@ -76,15 +76,15 @@ public class GameManager : MonoBehaviour
 
     public void UpdateScore(float scoreToAdd)
     {
-        m_Points += scoreToAdd;
-        ScoreText.text = $"Score: {m_Points}";
-        finalPoints = m_Points;
+        finalPoints += scoreToAdd;
+        ScoreText.text = $"Score: {finalPoints}";
     }
 
     public void GameOver()
     {
-        SceneManager.LoadScene(2);
+        MenuManager.Instance.score = finalPoints;
         CheckBestScore();
+        SceneManager.LoadScene(2);
     }
 
 

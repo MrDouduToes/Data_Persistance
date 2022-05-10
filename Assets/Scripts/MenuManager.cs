@@ -30,75 +30,56 @@ public class MenuManager : MonoBehaviour
     [System.Serializable]
     public class SaveData
     {
-        public string finalName;
-        public string bestName;
-        public float score;
-        public float bestScore;
+        public string bestNameJson;
+        public float bestScoreJson;
 
-    }
-
-    public void SaveName()
-    {
-        SaveData nameData = new SaveData();
-        nameData.finalName = finalName;
-
-        string json = JsonUtility.ToJson(nameData);
-
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", json);
-    }
-    public void SaveScore()
-    {
-        SaveData scoreData = new SaveData();
-        scoreData.score = score;
-
-        string scoreJson = JsonUtility.ToJson(scoreData);
-
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", scoreJson);
     }
 
     public void SaveBestName()
     {
-        SaveData bestNameData = new SaveData();
-        bestNameData.bestName = bestName;
+        SaveData j_name = new SaveData();
 
-        string nameJson = JsonUtility.ToJson(bestNameData);
+        j_name.bestNameJson = bestName;
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", nameJson);
+        string nameJson = JsonUtility.ToJson(j_name);
+
+        File.WriteAllText(Application.persistentDataPath + "/planeName.json", nameJson);
     }
 
     public void SaveBestScore()
     {
-        SaveData bestScoreData = new SaveData();
-        bestScoreData.bestScore = bestScore;
+        SaveData j_score = new SaveData();
 
-        string scoreJson = JsonUtility.ToJson(bestScoreData);
+        j_score.bestScoreJson = bestScore;
 
-        File.WriteAllText(Application.persistentDataPath + "/savefile.json", scoreJson);
+        string scoreJson = JsonUtility.ToJson(j_score);
+
+        File.WriteAllText(Application.persistentDataPath + "/planeScore.json", scoreJson);
     }
 
     public void LoadBestName()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
+        string path = Application.persistentDataPath + "/planeName.json";
         if (File.Exists(path))
         {
             Debug.Log("se ha encontrado la ruta del nombre");//kita
-            string nameJson = File.ReadAllText(path);
-            SaveData nameData = JsonUtility.FromJson<SaveData>(nameJson);
-            Debug.Log("se ha encontrado el nombre " + nameData.bestName);//kita
-            bestName = nameData.bestName;
+            string j_name = File.ReadAllText(path);
+            SaveData nameData = JsonUtility.FromJson<SaveData>(j_name);
+            Debug.Log("se ha encontrado el nombre " + nameData.bestNameJson);//kita
+            bestName = nameData.bestNameJson;
         }
     }
 
     public void LoadBestScore()
     {
-        string path = Application.persistentDataPath + "/savefile.json";
+        string path = Application.persistentDataPath + "/planeScore.json";
         if (File.Exists(path))
         {
             Debug.Log("se ha encontrado la ruta del numero");//kita
-            string scoreJson = File.ReadAllText(path);
-            SaveData scoreData = JsonUtility.FromJson<SaveData>(scoreJson);
-            Debug.Log("se ha encontrado el numero" + scoreData.bestScore);//kita
-            bestScore = scoreData.bestScore;
+            string j_score = File.ReadAllText(path);
+            SaveData scoreData = JsonUtility.FromJson<SaveData>(j_score);
+            Debug.Log("se ha encontrado el numero" + scoreData.bestScoreJson);//kita
+            bestScore = scoreData.bestScoreJson;
         }
     }
 

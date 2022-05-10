@@ -22,25 +22,10 @@ public class MenuUIHandler : MonoBehaviour
         nameFilter = playerName.text;
         MenuManager.Instance.finalName = nameFilter;
         Debug.Log("El nombre k se a introdusio e " + nameFilter); //kitar
-        MenuManager.Instance.SaveName();
         canRunGame = true;
         Debug.Log("Ya podes juga boludo");
     }
 
-    /*public void SaveNameCliked()
-    {
-
-        //if (NameFilter != null)
-        //{
-        MenuManager.Instance.SaveName();
-        canRunGame = true;
-        Debug.Log("Ya podes juga boludo"); //kitar
-                                           //}
-        /*else
-        {
-            Debug.Log("Tiene k pone " + only + ", no " + NameFilter);
-        }
-       */
 
 
     public void StartNew()
@@ -60,7 +45,7 @@ public class MenuUIHandler : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void Exit()
+    public static void Exit()
     {
 
 #if UNITY_EDITOR
